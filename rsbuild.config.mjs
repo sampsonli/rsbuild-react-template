@@ -1,6 +1,7 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginLess } from '@rsbuild/plugin-less';
+import * as path from 'node:path';
 
 
 export default defineConfig({
@@ -10,5 +11,10 @@ export default defineConfig({
   },
   html: {
     template: './src/index.html',
+  },
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
+    },
   }
 });

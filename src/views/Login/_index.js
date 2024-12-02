@@ -1,2 +1,2 @@
-import load from '/src/common/load';
+import load from '~/common/load';
 export default load(() => import('.'));
