@@ -1,0 +1,32 @@
+{
+  "name": "rsbuild-react-template",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "deploy": "node deploy.mjs"
+  },
+  "dependencies": {
+    "axios": "^1.7.8",
+    "dayjs": "^1.11.13",
+    "delaunator": "^5.0.1",
+    "mtor": "^2.1.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.0.1",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@rsbuild/core": "^1.1.7",
+    "@rsbuild/plugin-less": "^1.1.0",
+    "@rsbuild/plugin-react": "^1.0.7",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.13.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}

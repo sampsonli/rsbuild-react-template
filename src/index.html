@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=UTF-8>
+    <title>我的页面</title>
+    <meta name=mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name=format-detection content="telephone=no">
+    <meta name=applicable-device content=mobile>
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <script type="text/javascript">
+        var _isMobile = false;
+        var rem2px;
+        var px2rem;
+        (function () {
+            var rFontSize;
+            function resize() {
+                var clientWith = document.documentElement.clientWidth;
+                var isMobile = false;
+                if(clientWith > 1500) {
+                    rFontSize = clientWith / 19.2;
+                } else if(clientWith > 1200){
+                    rFontSize = clientWith / 17; // 统一1440 * 960
+                } else if(clientWith > 576) {
+                    rFontSize = 1300 / 17;
+                } else { // 移动端
+                    rFontSize = clientWith / 3.75
+                    isMobile = true;
+                }
+
+                document.documentElement.style.fontSize = rFontSize + "px";
+                if(window.eventBus && isMobile !== _isMobile) {
+                    eventBus.emit('switchSize', isMobile);
+                }
+                _isMobile = isMobile;
+
+            }
+            window.onresize = resize;
+            resize();
+            rem2px = function (size) {
+                return size * rFontSize;
+            }
+            px2rem = function (size) {
+                return size / rFontSize;
+            }
+       })();
+
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>

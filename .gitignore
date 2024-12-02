@@ -1,0 +1,16 @@
+# Local
+.DS_Store
+*.local
+*.log*
+
+# Dist
+node_modules
+dist/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+public/cloud_colored_xyz0729.pcd
+public/2024-09-11.pcd
