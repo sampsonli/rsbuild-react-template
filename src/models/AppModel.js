@@ -6,7 +6,7 @@ class AppModel extends Model {
     text = '';
     isFull = false;
     async add() {
-        const ret = await core.invoke('my_custom_command', {a: 12, b: 54});
+        const ret = await core.invoke('my_custom_command', {a: 2, b: 5});
         console.log(ret);
         this.count = ret;
     }

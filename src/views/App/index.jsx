@@ -7,9 +7,12 @@ const Index = () => {
     const model = useInitModel(AppModel);
     return (
         <div className={style.content}>
-            <h1 className={style.btn} onClick={model.add}>add</h1>
-            <h1 className={style.btn} onClick={model.doFullScreen}>fullScreen</h1>
-            <p>Start building amazing things with Rsbuild.{model.count}-{model.text}</p>
+            <div className={style.row}>
+                <div className={`${style.col} ${style.red}`} onClick={model.doFullScreen}></div>
+                <div className={`${style.col} ${style.green}`}></div>
+                <div className={`${style.col} ${style.yellow}`}></div>
+            </div>
+
         </div>
     );
 };
