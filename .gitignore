@@ -14,3 +14,6 @@ dist/
 
 public/cloud_colored_xyz0729.pcd
 public/2024-09-11.pcd
+
+src-tauri/target
+src-tauri/gen

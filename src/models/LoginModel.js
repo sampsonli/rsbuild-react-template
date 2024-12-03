@@ -75,6 +75,19 @@ class LoginModel extends Model {
         }
         animate();
 
+        const doResize = () => {
+            const w = ele.offsetWidth;
+            const h = ele.offsetHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        };
+        window.addEventListener('resize', doResize);
+        const doDestroy = () => {
+            window.removeEventListener('resize', doResize);
+        };
+
+
         this.scene = scene;
         let group = new THREE.Group();
         group.position.set(-400, 200, 0);

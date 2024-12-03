@@ -16,5 +16,10 @@ export default defineConfig({
     alias: {
       '~': path.resolve(__dirname, 'src'),
     },
+  },
+  devServer: {
+    watchOptions: {
+      ignored: /src-tauri/,
+    }
   }
 });
