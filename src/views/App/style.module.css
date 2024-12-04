@@ -12,7 +12,8 @@
 }
 
 .content .row {
-  height: 100%;
+  flex: 1;
+
   display: flex;
 }
 .content .row .col {
@@ -22,10 +23,10 @@
 }
 
 .red {
-  background: red;
+  background: darkorchid;
 }
 .green {
-  background: green;
+  background: pink;
 }
 .yellow {
   background: yellow;

@@ -13,6 +13,14 @@ const Index = () => {
                 <div className={`${style.col} ${style.yellow}`}></div>
             </div>
 
+            <div className={style.row}>
+                <div className={`${style.col} ${style.green}`}></div>
+                <div className={`${style.col} ${style.yellow}`}></div>
+                <div className={`${style.col} ${style.red}`} onClick={model.doFullScreen}></div>
+
+
+            </div>
+
         </div>
     );
 };
