@@ -11,7 +11,7 @@ function Login () {
     }, []);
     return (
         <div className={style.container}>
-            <div className={style.header}>用户登录1</div>
+            {/*<div className={style.header}>用户登录1</div>*/}
             <div className={style.content} onClick={model.changeNum}>
                 <div className={style._3d} ref={_3d}></div>
             </div>

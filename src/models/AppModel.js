@@ -1,15 +1,43 @@
 import {Model, define} from 'mtor';
-import {window as twindow, core} from '@tauri-apps/api';
+import {window as twindow} from '@tauri-apps/api';
+import {initWebSocket} from '~/common/utils';
+import dayjs from 'dayjs';
 @define(module)
 class AppModel extends Model {
-    count = 0;
-    text = '';
     isFull = false;
-    async add() {
-        const ret = await core.invoke('my_custom_command', {a: 2, b: 5});
-        console.log(ret);
-        this.count = ret;
+    conn = {send: () => null};
+    messages = [{name: 'lichun', val: 'hello'}];
+    inputVal = '';
+    currentName = '';
+    tempname = '';
+
+    init(ele) {
+        this.currentName = sessionStorage.getItem('_name');
+        initWebSocket({
+            url: 'http://192.168.2.1:8081/ws',
+            onData: (data) => {
+               this.messages = [...this.messages, data];
+               ele.scrollTo(0, 10000000);
+            },
+            onOpen: (conn) => {
+                this.conn = conn;
+            }
+        });
     }
+
+    sendData(data) {
+        this.conn.send({msg: JSON.stringify(data)});
+    }
+
+    sendMsg() {
+        if(this.inputVal) {
+            this.sendData({name: this.currentName, val: this.inputVal, time: dayjs().format('mm:ss')});
+        }
+        // this.inputVal = '';
+    }
+
+
+
     async doFullScreen() {
         const currWindow = twindow.getCurrentWindow();
         // core.invoke('')

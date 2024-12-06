@@ -77,15 +77,19 @@ export const loadCss = (src) => {
 /**
  *
  * @param url
- * @param onData {(any) => void}
- * @param onOpen {function|void}
- * @param type {string}
- * @return {function}
+ * @param onData
+ * @param onOpen
+ * @param type
+ * @param timeout
+ * @returns {(function(): void)|*}
  */
-export const initWebSocket = ({url, onData, onOpen = undefined, type = 'text', timeout = 30000}) => {
+export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type = 'text', timeout = 30000}) => {
     let ws;
+    let pinginterval;
     let timeoutId;
     function createWebsocket() {
+        clearInterval(pinginterval);
+        clearTimeout(timeoutId);
         ws = new WebSocket(url);
         if (type !== 'text') {
             ws.binaryType = 'arraybuffer';
@@ -100,7 +104,7 @@ export const initWebSocket = ({url, onData, onOpen = undefined, type = 'text', t
                 }
                 setTimeout(() => {
                     createWebsocket();
-                }, 500);
+                }, 1000);
             }, timeout);
             if (type === 'text') {
                 const data = JSON.parse(event.data);
@@ -112,43 +116,21 @@ export const initWebSocket = ({url, onData, onOpen = undefined, type = 'text', t
             }
 
         };
-        let timeId;
         ws.onopen = () => {
-            ws.send(JSON.stringify({
-                'msg': {
-                    'identity': 1
-                },
-                'msg_type': 0
-            }));
-            onOpen && onOpen(ws);
-            timeId = setInterval(() => {
-                try {
-                    ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
-                } catch (ignore) {
-                    // console.log('');
-                }
-            }, 1000 * 20);
-        };
-        ws.onclose = () => {
-            clearInterval(timeId);
-        };
-        timeoutId = setTimeout(() => {
-            try {
-                ws.close();
-            } catch (e) {
-                console.log(e.message);
+            if(onOpen) {
+                const send = (data) => ws.send(JSON.stringify(data));
+                onOpen({ws, send});
             }
-
-            setTimeout(() => {
-                createWebsocket();
-            }, 300);
-        }, timeout);
+            ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
+            pinginterval = setInterval(() => {
+                ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
+            }, 1000 * 10);
+        };
     }
     createWebsocket();
     return () => {
         ws.close();
-        ws.onclose = () => {
-            clearTimeout(timeoutId);
-        };
+        clearInterval(pinginterval);
+        clearTimeout(timeoutId);
     };
 };

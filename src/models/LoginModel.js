@@ -143,7 +143,7 @@ class LoginModel extends Model {
         });
 
         // worker.postMessage({ type: 'staticPoints', url: '/cloud_colored_xyz0729.pcd' });
-        worker.postMessage({ type: 'staticPoints', url: '/2024-09-11.pcd' });
+        worker.postMessage({ type: 'staticPoints', url: '2024-09-11.pcd' });
         // worker.postMessage({ type: 'staticPoints', url: '/CloudProcessed.pcd' });
         // worker.postMessage({ type: 'staticPoints', url: '/left.pcd' });
         // worker.postMessage({ type: 'staticPoints', url: '/2.pcd' });
