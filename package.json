@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "rsbuild dev",
     "build": "rsbuild build",
-    "preview": "rsbuild preview",
+    "preview": "rsbuild preview --port=8083",
     "deploy": "node deploy.mjs",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build"

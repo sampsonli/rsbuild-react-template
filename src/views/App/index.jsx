@@ -28,7 +28,7 @@ const Index = () => {
             <div className={style.list} ref={ref}>
                 {model.messages.map((msg) => {
                     return msg.name === model.currentName ? <div className={`${style.row} ${style.me}`} key={msg.val}>{msg.val} <span className={style.nname}>我</span></div> :
-                    <div className={`${style.row} ${style.you}`} key={msg.val}><span className={style.nname}>{msg.name}</span>:{msg.val}
+                    <div className={`${style.row} ${style.you}`} key={msg.val}><span className={style.nname}>{msg.name}</span>{msg.val}
                     </div>;
                 })}
 

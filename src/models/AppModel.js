@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 class AppModel extends Model {
     isFull = false;
     conn = {send: () => null};
-    messages = [{name: 'lichun', val: 'hello'}];
+    messages = [{name: '管理员', val: 'hello， 咋们可以愉快聊天了'}];
     inputVal = '';
     currentName = '';
     tempname = '';
@@ -14,7 +14,7 @@ class AppModel extends Model {
     init(ele) {
         this.currentName = sessionStorage.getItem('_name');
         initWebSocket({
-            url: 'http://192.168.2.1:8081/ws',
+            url: 'http://106.5.205.221:48216/ws',
             onData: (data) => {
                this.messages = [...this.messages, data];
                ele.scrollTo(0, 10000000);
@@ -33,7 +33,7 @@ class AppModel extends Model {
         if(this.inputVal) {
             this.sendData({name: this.currentName, val: this.inputVal, time: dayjs().format('mm:ss')});
         }
-        // this.inputVal = '';
+        this.inputVal = '';
     }
 
 
