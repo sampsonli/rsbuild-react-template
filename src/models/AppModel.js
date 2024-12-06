@@ -14,7 +14,8 @@ class AppModel extends Model {
     init(ele) {
         this.currentName = sessionStorage.getItem('_name');
         initWebSocket({
-            url: 'http://106.5.205.221:48216/ws',
+            // url: 'http://106.5.205.221:48216/ws',
+            url: 'http://47.116.42.80:8817/ws',
             onData: (data) => {
                this.messages = [...this.messages, data];
                ele.scrollTo(0, 10000000);

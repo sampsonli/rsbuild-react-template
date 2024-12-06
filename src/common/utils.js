@@ -83,7 +83,7 @@ export const loadCss = (src) => {
  * @param timeout
  * @returns {(function(): void)|*}
  */
-export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type = 'text', timeout = 30000}) => {
+export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type = 'text', timeout = 60000}) => {
     let ws;
     let pinginterval;
     let timeoutId;
