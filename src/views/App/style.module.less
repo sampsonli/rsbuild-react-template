@@ -66,7 +66,9 @@
       display: flex;
       align-items: center;
       font-size: .2rem;
-      margin-bottom: .1rem;
+      margin: .1rem .05rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &.me {
         justify-content: flex-end;
       }
@@ -86,14 +88,19 @@
     }
   }
   .bottom {
-    height: .6rem;
+    height: .42rem;
     display: flex;
+    align-items: center;
     .input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       flex: 1;
       input {
         width: 90%;
-        height: .4rem;
+        height: .34rem;
+        //height: .3rem;
       }
     }
     .btn {
@@ -103,6 +110,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: .26rem;
+      line-height: .42rem;
 
     }
   }

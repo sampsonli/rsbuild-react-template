@@ -124,7 +124,7 @@ export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type 
             ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
             pinginterval = setInterval(() => {
                 ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
-            }, 1000 * 10);
+            }, 1000 * 30);
         };
     }
     createWebsocket();
