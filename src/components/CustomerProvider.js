@@ -4,6 +4,9 @@ import {evtBus} from 'mtor';
 import {debounce} from '~/common/utils';
 import {ConfigProvider, theme} from 'antd';
 import zhCN from 'antd/locale/zh_CN';
+import 'dayjs/locale/zh-cn';
+import dayjs from 'dayjs';
+dayjs.locale('zh-cn');
 
 window.eventBus = evtBus;
 let rootFontSize = Number(document.documentElement.style.fontSize.replace('px', ''));

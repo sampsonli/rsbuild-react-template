@@ -83,7 +83,7 @@ export const loadCss = (src) => {
  * @param timeout
  * @returns {(function(): void)|*}
  */
-export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type = 'text', timeout = 60000}) => {
+export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type = 'text', timeout = 60000 * 15}) => {
     let ws;
     let pinginterval;
     let timeoutId;
@@ -124,7 +124,7 @@ export const initWebSocket = ({url, onData, onOpen = ({ws, send}) => null, type 
             ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
             pinginterval = setInterval(() => {
                 ws.send(JSON.stringify({'msg': 'ping', 'msg_type': 1}));
-            }, 1000 * 30);
+            }, 60000 * 5);
         };
     }
     createWebsocket();
