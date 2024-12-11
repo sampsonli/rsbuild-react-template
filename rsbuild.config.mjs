@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [pluginReact(), pluginLess()],
   output: {
     cleanDistPath: process.env.NODE_ENV === 'production',
+    // cssModules: {
+    //   localIdentName: '[hash:base64:5]',
+    // },
   },
   html: {
     template: './src/index.html',
