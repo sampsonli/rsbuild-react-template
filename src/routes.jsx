@@ -1,9 +1,12 @@
-/* eslint-disable react/function-component-definition */
-import React from 'react';
+ 
+import React, {useEffect} from 'react';
+import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs';
 import {
     RouterProvider, createHashRouter,
 } from 'react-router';
 import Redirect from './components/Redirect';
+import {evtBus} from 'mtor';
+import {debounce} from '~/common/utils';
 
 const routes = [];
 ((r) => {
@@ -31,7 +34,27 @@ const router = createHashRouter(
     }],
 );
 
-const Routes = () => (
-    <RouterProvider router={router} />
-);
+
+window.eventBus = evtBus;
+let rootFontSize = Number(document.documentElement.style.fontSize.replace('px', ''));
+const Routes = () => {
+    const [trans, setTrans] = React.useState([px2remTransformer({rootValue: rootFontSize})]);
+    useEffect(() => {
+        const db = debounce(() => {
+            setTrans([px2remTransformer({rootValue: rootFontSize})]);
+        });
+        return evtBus.on('switchSize', ({rFontSize}) => {
+            rootFontSize = rFontSize;
+            db();
+        });
+    }, []);
+
+
+    return (
+        <StyleProvider transformers={trans}>
+            <RouterProvider router={router}/>
+        </StyleProvider>
+
+    );
+};
 export default Routes;

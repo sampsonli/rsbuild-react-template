@@ -30,8 +30,8 @@
                 }
 
                 document.documentElement.style.fontSize = rFontSize + "px";
-                if(window.eventBus && isMobile !== _isMobile) {
-                    eventBus.emit('switchSize', isMobile);
+                if(window.eventBus) {
+                    eventBus.emit('switchSize', {isMobile, rFontSize});
                 }
                 _isMobile = isMobile;
 

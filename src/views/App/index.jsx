@@ -2,6 +2,7 @@ import React from 'react';
 import style from './style.module.less';
 import {useInitModel} from 'mtor';
 import AppModel from '~/models/AppModel';
+import {DatePicker} from "antd";
 
 const Index = () => {
     const ref = React.useRef(null);
@@ -26,6 +27,7 @@ const Index = () => {
 
             </div>}
             <div className={style.list} ref={ref}>
+                <DatePicker/>
                 {model.messages.map((msg) => {
                     return msg.name === model.currentName ? <div className={`${style.row} ${style.me}`} key={msg.val}>{msg.val} <span className={style.nname}>我</span></div> :
                     <div className={`${style.row} ${style.you}`} key={msg.val}><span className={style.nname}>{msg.name}</span>{msg.val}
