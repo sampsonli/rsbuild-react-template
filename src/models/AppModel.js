@@ -8,7 +8,7 @@ class AppModel extends Model {
     conn = {send: () => null};
     messages = [{name: '管理员', val: 'hello， 咋们可以愉快聊天了'}];
     inputVal = '';
-    currentName = '';
+    currentName = '0';
     tempname = '';
 
     init(ele) {
