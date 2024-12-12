@@ -4,9 +4,10 @@ import {initWebSocket} from '~/common/utils';
 import dayjs from 'dayjs';
 @define(module)
 class AppModel extends Model {
+    ready = false;
     isFull = false;
     conn = {send: () => null};
-    messages = [{name: '管理员', val: 'hello， 咋们可以愉快聊天了'}];
+    messages = [];
     inputVal = '';
     currentName = '0';
     tempname = '';
@@ -22,6 +23,8 @@ class AppModel extends Model {
             },
             onOpen: (conn) => {
                 this.conn = conn;
+                this.ready = true;
+                this.messages = [{name: '管理员', val: 'hello， 咋们可以愉快聊天了'}];
             }
         });
     }
