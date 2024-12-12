@@ -10,7 +10,7 @@ import 'framework7-icons';
 
 // eslint-disable-next-line react/prop-types
 const Framework7Provider = ({children}) => {
-    return (<App theme="md">
+    return (<App>
             {children}
         </App>);
 };
