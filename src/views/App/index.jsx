@@ -5,10 +5,10 @@ import AppModel from '~/models/AppModel';
 
 const Index = () => {
     const ref = useRef(null);
-    const model = useInitModel(AppModel, ({init}) => init(ref.current));
+    const model = useInitModel(AppModel, ({init}) => init(ref.current), true);
     return (
         <div className={style.content}>
-            <div className={style.title}>聊天室</div>
+            <div className={style.title} onClick={model.onBeforeClean}>聊天室</div>
 
             {!model.currentName && <div className={style.layer}>
                 <div className={style.dialog}>

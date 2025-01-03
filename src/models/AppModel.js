@@ -4,6 +4,8 @@ import {initWebSocket} from '~/common/utils';
 import dayjs from 'dayjs';
 @define(module)
 class AppModel extends Model {
+    static wsCloseFn = null;
+
     ready = false;
     isFull = false;
     conn = {send: () => null};
@@ -14,7 +16,7 @@ class AppModel extends Model {
 
     init(ele) {
         this.currentName = sessionStorage.getItem('_name');
-        initWebSocket({
+        AppModel.wsCloseFn = initWebSocket({
             // url: 'http://106.5.205.221:48216/ws',
             url: 'ws://47.116.42.80:8817/ws',
             onData: (data) => {
@@ -59,7 +61,10 @@ class AppModel extends Model {
 
 
 
-        
+
+    }
+    onBeforeClean() {
+        AppModel.wsCloseFn();
     }
 }
 
