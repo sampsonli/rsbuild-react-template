@@ -4,8 +4,6 @@ import {initWebSocket} from '~/common/utils';
 import dayjs from 'dayjs';
 @define(module)
 class AppModel extends Model {
-    static wsCloseFn = null;
-
     ready = false;
     isFull = false;
     conn = {send: () => null};
@@ -16,7 +14,7 @@ class AppModel extends Model {
 
     init(ele) {
         this.currentName = sessionStorage.getItem('_name');
-        AppModel.wsCloseFn = initWebSocket({
+        const wsCloseFn = initWebSocket({
             // url: 'http://106.5.205.221:48216/ws',
             url: 'ws://47.116.42.80:8817/ws',
             onData: (data) => {
@@ -29,6 +27,7 @@ class AppModel extends Model {
                 this.messages = [{name: '管理员', val: 'hello， 咋们可以愉快聊天了'}];
             }
         });
+        this.onBeforeReset(wsCloseFn);
     }
 
     sendData(data) {
@@ -57,14 +56,6 @@ class AppModel extends Model {
         } catch (e) {
             this.text = e;
         }
-
-
-
-
-
-    }
-    onBeforeClean() {
-        AppModel.wsCloseFn();
     }
 }
 

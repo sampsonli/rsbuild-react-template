@@ -5,7 +5,7 @@ import AppModel from '~/models/AppModel';
 
 const Index = () => {
     const ref = useRef(null);
-    const model = useInitModel(AppModel, ({init}) => init(ref.current), true);
+    const model = useInitModel(AppModel, ({init}) => init(ref.current));
     return (
         <div className={style.content}>
             <div className={style.title} onClick={model.onBeforeClean}>聊天室</div>
