@@ -19,7 +19,7 @@
     "framework7": "^8.3.4",
     "framework7-icons": "^5.0.5",
     "framework7-react": "^8.3.4",
-    "mtor": "^2.1.9",
+    "mtor": "^2.1.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.1.1",

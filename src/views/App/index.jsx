@@ -8,7 +8,7 @@ const Index = () => {
     const model = useInitModel(AppModel, ({init}) => init(ref.current));
     return (
         <div className={style.content}>
-            <div className={style.title} onClick={model.onBeforeClean}>聊天室</div>
+            <div className={style.title}>聊天室</div>
 
             {!model.currentName && <div className={style.layer}>
                 <div className={style.dialog}>
