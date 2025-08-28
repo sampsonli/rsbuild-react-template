@@ -9,13 +9,22 @@
   font-size: .12rem;
   gap: .2rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  // scroll-snap-type: x mandatory;
   .item {
     //scroll-snap-align: center;
     width: 5rem;
     //flex-shrink: 0;
     height: 3rem;
     background-color: rgba(123, 255, 255, 0.8);
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    &:nth-child(1) {
+      cursor: pointer;
+      background-color: rgb(177, 87, 189);
+    }
 
   }
 

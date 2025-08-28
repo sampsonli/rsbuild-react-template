@@ -26,7 +26,7 @@ const router = createHashRouter(
         element: <Element/>,
     })), {
         path: '/*',
-        element: <Redirect to="/app"/>,
+        element: <Redirect to="/Calculator"/>,
     }],
 );
 

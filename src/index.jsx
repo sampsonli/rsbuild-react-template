@@ -7,6 +7,7 @@ import Provider from '~/components/NothingProvider';
 // import Provider from '~/components/Framework7Provider';
 import 'dayjs/locale/zh-cn';
 import dayjs from 'dayjs';
+import './assets/css/style.css';
 dayjs.locale('zh-cn');
 window.eventBus = evtBus;
 const root = ReactDOM.createRoot(document.getElementById('root'));
