@@ -2043,10 +2043,10 @@ ms@^2.1.3:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-mtor@^2.1.11:
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/mtor/-/mtor-2.1.11.tgz#40685e30273d32165b4c1bdd802308e84029efc2"
-  integrity sha512-ec1/Zz5HGu0/rTlQ/mHqg7mrV9StFrLCRfgQ5srRA9NFaiDP2LBVYzUZvlyOiA2Y6hA0aA6CEZboJNnkOvqTKQ==
+mtor@^2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/mtor/-/mtor-2.1.13.tgz#c0f2dbd9d2e706d0427fcb11e3048e0745aed96f"
+  integrity sha512-uZd/0f0TgtPmwfJpY/UQsRL4NeWMgJAIoeGokz0vb0hjT+6tYtrHljKj8UZrFb6ikKy7eVE42CzMytiIVdMeqA==
 
 natural-compare@^1.4.0:
   version "1.4.0"

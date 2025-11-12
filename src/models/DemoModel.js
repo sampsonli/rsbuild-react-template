@@ -3,28 +3,35 @@ import * as Comlink from 'comlink';
 
 @define(module)
 class DemoModel extends Model {
-
+    loaded = false;
+    static work = 1;
     /**
      * @type {Comlink.Remote<{heavyCalculation: any}>}
      */
-    static work;
+    work_proxy;
 
     num = 10;
 
     async add() {
-        this.num = await DemoModel.work.heavyCalculation(this.num);
+        console.log(DemoModel.work);
+        console.log(26);
+
+        // this.num = await DemoModel.work.heavyCalculation(11111);
 
 
     }
 
     init() {
+        if (this.loaded) {
+            return;
+        }
+        DemoModel.work = 2;
        const work = new Worker(new URL('./mywork.js', import.meta.url));
-        // 创建 proxy
-        DemoModel.work = Comlink.wrap(work);
+        this.work_proxy = Comlink.wrap(work);
         this.onBeforeReset(() => {
-            DemoModel.work = undefined;
             work.terminate();
         });
+        this.loaded = true;
     }
 
 
