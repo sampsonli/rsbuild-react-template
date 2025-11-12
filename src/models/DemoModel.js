@@ -9,10 +9,10 @@ class DemoModel extends Model {
      */
     static work;
 
-    num = 0;
+    num = 10;
 
     async add() {
-        this.num = await DemoModel.work.heavyCalculation(100000000);
+        this.num = await DemoModel.work.heavyCalculation(this.num);
 
 
     }
@@ -24,11 +24,6 @@ class DemoModel extends Model {
         this.onBeforeReset(() => {
             DemoModel.work = undefined;
             work.terminate();
-        });
-
-        this.onBeforeReset(() => {
-            console.log('hello reset');
-
         });
     }
 
