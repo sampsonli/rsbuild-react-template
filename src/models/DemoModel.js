@@ -4,7 +4,6 @@ import * as Comlink from 'comlink';
 @define(module)
 class DemoModel extends Model {
     loaded = false;
-    static work = 1;
     /**
      * @type {Comlink.Remote<{heavyCalculation: any}>}
      */
@@ -13,20 +12,16 @@ class DemoModel extends Model {
     num = 10;
 
     async add() {
-        console.log(DemoModel.work);
-        console.log(26);
-
-        // this.num = await DemoModel.work.heavyCalculation(11111);
-
-
+        this.num++;
+        let ret = await this.work_proxy.heavyCalculation();
+        console.log(`computed:${ret}`);
     }
 
     init() {
         if (this.loaded) {
             return;
         }
-        DemoModel.work = 2;
-       const work = new Worker(new URL('./mywork.js', import.meta.url));
+        const work = new Worker(new URL('./mywork.js', import.meta.url));
         this.work_proxy = Comlink.wrap(work);
         this.onBeforeReset(() => {
             work.terminate();
