@@ -7,6 +7,7 @@ const Demo = () => {
     return (<div className={style.container}>
         <div className={style.item} onClick={model.add}>{model.num}</div>
         <div className={style.item}>2</div>
+        <div className={style.item}>{model.num}</div>
         <div className={style.item}>4</div>
 
 
