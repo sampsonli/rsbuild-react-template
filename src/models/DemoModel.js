@@ -7,14 +7,14 @@ class DemoModel extends Model {
     /**
      * @type {Comlink.Remote<{heavyCalculation: any}>}
      */
-    work_proxy;
+    static work_proxy;
 
     num = 10;
 
     async add() {
         this.num++;
-        let ret = await this.work_proxy.heavyCalculation();
-        console.log(`computed:${ret}`);
+        let ret = await DemoModel.work_proxy.heavyCalculation(1000);
+        console.log(`computed2:${ret}`);
     }
 
     init() {
@@ -22,9 +22,12 @@ class DemoModel extends Model {
             return;
         }
         const work = new Worker(new URL('./mywork.js', import.meta.url));
-        this.work_proxy = Comlink.wrap(work);
+        DemoModel.work_proxy = Comlink.wrap(work);
         this.onBeforeReset(() => {
             work.terminate();
+            DemoModel.work_proxy.releaseProxy();
+
+
         });
         this.loaded = true;
     }

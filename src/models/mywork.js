@@ -1,17 +1,16 @@
-import {test_performance} from '~/wasm/pkg/wasm_demo';
+import {simple_async} from '~/wasm/pkg/wasm_demo';
 
 import * as ComLink from 'comlink';
 
 
 // 定义 worker 中要暴露的 API
 const workerAPI = {
-    heavyCalculation: (num = 30) => {
-        console.time('add');
-        let tmp = test_performance(num);
-        console.timeEnd('add');
-        console.log(`result: ${tmp}`);
-        return tmp;
+    heavyCalculation: async (num = 30) => {
+        const ret = await simple_async(num);
+
+        return ret;
     },
 };
 // 暴露 API 给主线程
 ComLink.expose(workerAPI);
+
