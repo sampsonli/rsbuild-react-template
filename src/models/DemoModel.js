@@ -27,6 +27,10 @@ class DemoModel extends Model {
 
         // 创建 proxy
         DemoModel.work = Comlink.wrap(work);
+        this.onBeforeReset(() => {
+            DemoModel.work = undefined;
+            work.terminate();
+        });
 
 
 
