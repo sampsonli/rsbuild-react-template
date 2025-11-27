@@ -4,9 +4,8 @@ import {
     createSolanaRpc,
     createSolanaRpcSubscriptions,
     address,
-    generateKeyPair,
     airdropFactory,
-    lamports, generateKeyPairSigner
+    generateKeyPairSigner, createKeyPairSignerFromBytes, createSignableMessage,
 } from '@solana/kit';
 
 @define(module)
@@ -16,6 +15,7 @@ class DemoModel extends Model {
      * @type {{rpc, rpcSubscriptions}}
      */
     static client = undefined;
+    myaddr = address('6P4nuQcveqL8TbssGdRh82qjf6SrmERdn8ieM7hfUmse');
     loaded = false;
 
     client;
@@ -34,6 +34,16 @@ class DemoModel extends Model {
         this.num++;
     }
 
+    async sign() {
+        const myMessage = createSignableMessage('Hello world!');
+        const keypairBytes = new Uint8Array([50,254,168,227,164,212,42,238,88,8,25,198,2,16,109,126,170,15,201,47,140,62,228,25,184,160,215,164,204,9,55,241,79,241,127,218,120,6,209,149,90,245,161,144,189,96,157,163,23,121,158,88,94,198,6,190,173,151,221,99,189,138,203,193]);
+
+        const signer = await createKeyPairSignerFromBytes(keypairBytes);
+        const [myMessageSignatures] = await signer.signMessages([myMessage]);
+        console.log(myMessageSignatures);
+
+    }
+
     async init() {
         if (this.loaded) {
             return;
@@ -46,7 +56,6 @@ class DemoModel extends Model {
         }
         const {rpc} = DemoModel.client;
 
-        const myaddr = address('6P4nuQcveqL8TbssGdRh82qjf6SrmERdn8ieM7hfUmse')
 
         const airdrop = airdropFactory(DemoModel.client);
         /*await airdrop({
@@ -54,12 +63,8 @@ class DemoModel extends Model {
             lamports: lamports(5_000_000_000n),
             commitment: 'confirmed',
         });*/
-        const w = await generateKeyPairSigner();
-        console.log(w);
 
-
-        const {value} = await rpc.getBalance(myaddr).send();
-       // console.log(typeof value)
+        const {value} = await rpc.getBalance(this.myaddr).send();
         this.balance = Number( value)/ 1e9;
 
 
