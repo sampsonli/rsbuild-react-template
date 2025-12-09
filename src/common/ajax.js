@@ -18,7 +18,7 @@ const _axios = axios.create(options);
 
 export const get = function (url, config) {
   return _axios.get(url, config).then((response) => {
-    console.log(response);
+    // console.log(response);
     if (response && response.status === 200) {
       return response.data;
     }
@@ -64,6 +64,16 @@ export const generator = (Apis) => {
           Object.keys(params).forEach((k) => {
             p.append(k, params[k]);
           });
+        }
+        if (type === 'file') {
+          cfg.headers = cfg.headers || {};
+          cfg.headers['content-type'] = 'multipart/form-data';
+          p = new FormData();
+          Object.keys(params).forEach((k) => {
+            p.append(k, params[k]);
+          });
+
+
         }
         return post(furl, p, cfg);
       };

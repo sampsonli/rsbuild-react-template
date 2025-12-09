@@ -3,8 +3,10 @@ import style from './style.module.less';
 import {useInitModel} from 'mtor';
 import DemoModel from '~/models/DemoModel';
 
+
 const Demo = () => {
     const model = useInitModel(DemoModel, ({init}) => init());
+
 
     return (<div className={style.container}>
 
