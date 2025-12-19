@@ -35,7 +35,7 @@ class DemoModel extends Model {
     }
 
     async sign() {
-        const con = await window.solana.connect();
+        // const con = await window.solana.connect();
 
         console.log(window.solana);
 
@@ -48,7 +48,7 @@ class DemoModel extends Model {
         const [myMessageSignatures] = await signer.signMessages([myMessage]);
         console.log(myMessageSignatures);
 
-        console.log(await window.solana.signMessage(new Uint8Array("hello world!")));
+        // console.log(await window.solana.signMessage(new Uint8Array('hello world!')));
 
     }
 
@@ -56,7 +56,7 @@ class DemoModel extends Model {
         const {rpc} = DemoModel.client;
 
 
-       /* const airdrop = airdropFactory(DemoModel.client);
+      /*  const airdrop = airdropFactory(DemoModel.client);
         await airdrop({
             recipientAddress: this.myaddr,
             lamports: lamports(5_000_000_000n),
